@@ -8,7 +8,7 @@ fun main() {
     }
 
 
-    var elves = arrayListOf<Elf>()
+    val elves = arrayListOf<Elf>()
 
     val input = readInput("resources/day1source")
 
@@ -22,9 +22,16 @@ fun main() {
         }
     }
 
-    print(elves)
-    var maxElf = elves.maxBy { it.calories }
+    val maxElf = elves.maxBy { it.calories }
+    elves.sortBy { it.calories }
+    val maxElves = elves.subList(elves.size-3, elves.size)
+    print(maxElves)
+
+    val result = maxElves.map {
+        it.calories
+    }.sum()
     print("\n" + maxElf)
+    print("\n" + result)
 
 }
 
