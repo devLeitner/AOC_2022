@@ -7,11 +7,26 @@ fun main() {
         return input.size
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
 
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    var elves = arrayListOf<Elf>()
+
+    val input = readInput("resources/day1source")
+
+    var elf: Elf = Elf(0)
+    input.forEach{
+        if(it.isBlank()){
+            elves.add(elf)
+            elf = Elf(0)
+        }else{
+            elf.calories += it.toInt();
+        }
+    }
+
+    print(elves)
+    var maxElf = elves.maxBy { it.calories }
+    print("\n" + maxElf)
+
 }
+
+
+data class Elf(var calories: Int)
