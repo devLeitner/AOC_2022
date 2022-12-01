@@ -25,13 +25,12 @@ fun main() {
     val maxElf = elves.maxBy { it.calories }
     elves.sortBy { it.calories }
     val maxElves = elves.subList(elves.size-3, elves.size)
-    print(maxElves)
 
     val result = maxElves.map {
         it.calories
     }.sum()
-    print("\n" + maxElf)
-    print("\n" + result)
+    print("\n$maxElf")
+    print("\nTop 3 elves, sum of calories: $result")
 
 }
 
