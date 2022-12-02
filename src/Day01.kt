@@ -35,4 +35,4 @@ fun main() {
 }
 
 
-data class Elf(var calories: Int)
+internal data class Elf(var calories: Int)
