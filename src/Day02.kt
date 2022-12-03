@@ -2,59 +2,62 @@ import RPS.*
 import RPSRESULT.*
 
 fun main() {
+    fun part1() {
+        val input = readInput("./resources/day2source")
+
+        val list = arrayListOf<Array<String>>()
+        input.forEach {
+            list.add(arrayOf(it.split(" ")[0], it.split(" ")[1]))
+        }
+
+        val enumList = arrayListOf<List<RPS>>()
+        list.forEach {
+            enumList.add(it.map { it.toEnum() })
+        }
+
+
+//    print("$enumList\n")
+        var totalScore: Int = 0
+
+        enumList.forEach {
+            totalScore += it[0].vs(it[1])
+        }
+
+        print(totalScore)
+
+
+    }
+    fun part2() {
+        val input = readInput("resources/day2source")
+        val list = arrayListOf<Array<String>>()
+        input.forEach {
+            list.add(arrayOf(it.split(" ")[0], it.split(" ")[1]))
+        }
+
+        val enumList = arrayListOf<Part2>()
+
+        list.forEach {
+            enumList.add(Part2(it[0].toEnum(), it[1].toResult()))
+        }
+
+        var totalScore = 0
+        enumList.forEach {
+            val score = it.result.getScore(it.rps)
+            totalScore += score
+            print("$it with $score \n")
+        }
+
+
+        print(totalScore)
+    }
+
 //    part1()
     part2()
 }
 
-fun part1() {
-    val input = readInput("./resources/day2source")
-
-    val list = arrayListOf<Array<String>>()
-    input.forEach {
-        list.add(arrayOf(it.split(" ")[0], it.split(" ")[1]))
-    }
-
-    val enumList = arrayListOf<List<RPS>>()
-    list.forEach {
-        enumList.add(it.map { it.toEnum() })
-    }
 
 
-//    print("$enumList\n")
-    var totalScore: Int = 0
 
-    enumList.forEach {
-        totalScore += it[0].vs(it[1])
-    }
-
-    print(totalScore)
-
-
-}
-
-fun part2() {
-    val input = readInput("resources/day2source")
-    val list = arrayListOf<Array<String>>()
-    input.forEach {
-        list.add(arrayOf(it.split(" ")[0], it.split(" ")[1]))
-    }
-
-    val enumList = arrayListOf<Part2>()
-
-    list.forEach {
-        enumList.add(Part2(it[0].toEnum(), it[1].toResult()))
-    }
-
-    var totalScore = 0
-    enumList.forEach {
-        val score = it.result.getScore(it.rps)
-        totalScore += score
-        print("$it with $score \n")
-    }
-
-
-    print(totalScore)
-}
 
 internal data class Part2(val rps: RPS, val result: RPSRESULT)
 
